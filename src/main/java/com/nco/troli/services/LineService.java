@@ -28,7 +28,7 @@ public class LineService {
     }
 
     public List<Line> getAllLines() {
-        return lineDao.getAllLines();
+        return lineDao.selectAllLines();
     }
 
     public Optional<Line> getLineById(UUID id) {

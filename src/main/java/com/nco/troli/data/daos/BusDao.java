@@ -15,7 +15,7 @@ public interface BusDao {
         return insertBus(id, bus);
     }
 
-    List<Bus> getAllBuses();
+    List<Bus> selectAllBuses();
 
     boolean deleteBusById(UUID id);
 

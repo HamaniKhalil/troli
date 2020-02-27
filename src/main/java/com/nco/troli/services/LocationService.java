@@ -28,7 +28,7 @@ public class LocationService {
     }
 
     public List<Location> getAllLocations() {
-        return locationDao.getAllLocations();
+        return locationDao.selectAllLocations();
     }
 
     public Optional<Location> getLocationById(UUID id) {

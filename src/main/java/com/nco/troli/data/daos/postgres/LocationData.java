@@ -29,7 +29,7 @@ public class LocationData implements LocationDao {
     }
 
     @Override
-    public List<Location> getAllLocations() {
+    public List<Location> selectAllLocations() {
         return null;
     }
 

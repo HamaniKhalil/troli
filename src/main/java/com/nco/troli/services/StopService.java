@@ -28,7 +28,7 @@ public class StopService {
     }
 
     public List<Stop> getAllStops() {
-        return stopDao.getAllStops();
+        return stopDao.selectAllStops();
     }
 
     public Optional<Stop> getStopById(UUID id) {

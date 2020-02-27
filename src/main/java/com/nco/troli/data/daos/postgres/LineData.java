@@ -29,7 +29,7 @@ public class LineData implements LineDao {
     }
 
     @Override
-    public List<Line> getAllLines() {
+    public List<Line> selectAllLines() {
         return null;
     }
 

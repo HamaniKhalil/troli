@@ -15,7 +15,7 @@ public interface PassengerDao {
         return insertPassenger(id, passenger);
     }
 
-    List<Passenger> getAllPassengers();
+    List<Passenger> selectAllPassengers();
 
     boolean deletePassengerById(UUID id);
 

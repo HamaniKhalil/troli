@@ -29,7 +29,7 @@ public class StopData implements StopDao {
     }
 
     @Override
-    public List<Stop> getAllStops() {
+    public List<Stop> selectAllStops() {
         return null;
     }
 

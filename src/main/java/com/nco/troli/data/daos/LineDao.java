@@ -15,7 +15,7 @@ public interface LineDao {
         return insertLine(id, line);
     }
 
-    List<Line> getAllLines();
+    List<Line> selectAllLines();
 
     boolean deleteLineById(UUID id);
 

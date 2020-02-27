@@ -29,7 +29,7 @@ public class CompanyData implements CompanyDao {
     }
 
     @Override
-    public List<Company> getAllCompanies() {
+    public List<Company> selectAllCompanies() {
         return null;
     }
 

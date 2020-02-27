@@ -14,7 +14,7 @@ public interface LocationDao {
         return insertLocation(id, location);
     }
 
-    List<Location> getAllLocations();
+    List<Location> selectAllLocations();
 
     boolean deleteLocationById(UUID id);
 

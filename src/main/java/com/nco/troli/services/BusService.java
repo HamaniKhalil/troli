@@ -28,7 +28,7 @@ public class BusService {
     }
 
     public List<Bus> getAllBuses() {
-        return busDao.getAllBuses();
+        return busDao.selectAllBuses();
     }
 
     public Optional<Bus> getBusById(UUID id) {

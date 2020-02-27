@@ -15,7 +15,7 @@ public interface StopDao {
         return insertStop(id, stop);
     }
 
-    List<Stop> getAllStops();
+    List<Stop> selectAllStops();
 
     boolean deleteStopById(UUID id);
 

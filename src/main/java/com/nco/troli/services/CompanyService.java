@@ -28,7 +28,7 @@ public class CompanyService {
     }
 
     public List<Company> getAllCompanies() {
-        return companyDao.getAllCompanies();
+        return companyDao.selectAllCompanies();
     }
 
     public Optional<Company> getCompanyById(UUID id) {

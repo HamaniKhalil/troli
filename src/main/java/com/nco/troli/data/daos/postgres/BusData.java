@@ -29,7 +29,7 @@ public class BusData implements BusDao {
     }
 
     @Override
-    public List<Bus> getAllBuses() {
+    public List<Bus> selectAllBuses() {
         return null;
     }
 

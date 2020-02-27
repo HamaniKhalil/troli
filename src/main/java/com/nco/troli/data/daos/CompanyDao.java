@@ -15,7 +15,7 @@ public interface CompanyDao {
         return insertCompany(id, company);
     }
 
-    List<Company> getAllCompanies();
+    List<Company> selectAllCompanies();
 
     boolean deleteCompanyById(UUID id);
 

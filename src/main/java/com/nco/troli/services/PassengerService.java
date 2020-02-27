@@ -28,7 +28,7 @@ public class PassengerService {
     }
 
     public List<Passenger> getAllPassengers() {
-        return passengerDao.getAllPassengers();
+        return passengerDao.selectAllPassengers();
     }
 
     public Optional<Passenger> getPassengerById(UUID id) {

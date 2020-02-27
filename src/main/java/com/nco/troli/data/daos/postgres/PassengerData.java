@@ -29,7 +29,7 @@ public class PassengerData implements PassengerDao {
     }
 
     @Override
-    public List<Passenger> getAllPassengers() {
+    public List<Passenger> selectAllPassengers() {
         return null;
     }
 
