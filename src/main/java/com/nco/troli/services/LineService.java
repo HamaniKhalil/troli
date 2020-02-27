@@ -23,15 +23,15 @@ public class LineService {
         this.lineDao = lineDao;
     }
 
-    public boolean addLine(Line line) {
+    public boolean insertLine(Line line) {
         return lineDao.insertLine(line);
     }
 
-    public List<Line> getAllLines() {
+    public List<Line> selectAllLines() {
         return lineDao.selectAllLines();
     }
 
-    public Optional<Line> getLineById(UUID id) {
+    public Optional<Line> selectLineById(UUID id) {
         return lineDao.selectLineById(id);
     }
 

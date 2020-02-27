@@ -23,15 +23,15 @@ public class CompanyService {
         this.companyDao = companyDao;
     }
 
-    public boolean addCompany(Company company) {
+    public boolean insertCompany(Company company) {
         return companyDao.insertCompany(company);
     }
 
-    public List<Company> getAllCompanies() {
+    public List<Company> selectAllCompanies() {
         return companyDao.selectAllCompanies();
     }
 
-    public Optional<Company> getCompanyById(UUID id) {
+    public Optional<Company> selectCompanyById(UUID id) {
         return companyDao.selectCompanyById(id);
     }
 

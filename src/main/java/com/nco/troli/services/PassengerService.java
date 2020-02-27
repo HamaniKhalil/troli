@@ -23,15 +23,15 @@ public class PassengerService {
         this.passengerDao = passengerDao;
     }
 
-    public boolean addPassenger(Passenger passenger) {
+    public boolean insertPassenger(Passenger passenger) {
         return passengerDao.insertPassenger(passenger);
     }
 
-    public List<Passenger> getAllPassengers() {
+    public List<Passenger> selectAllPassengers() {
         return passengerDao.selectAllPassengers();
     }
 
-    public Optional<Passenger> getPassengerById(UUID id) {
+    public Optional<Passenger> selectPassengerById(UUID id) {
         return passengerDao.selectPassengerById(id);
     }
 

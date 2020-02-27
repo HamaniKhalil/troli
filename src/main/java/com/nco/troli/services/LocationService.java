@@ -23,15 +23,15 @@ public class LocationService {
         this.locationDao = locationDao;
     }
 
-    public boolean addLocation(Location location) {
+    public boolean insertLocation(Location location) {
         return locationDao.insertPerson(location);
     }
 
-    public List<Location> getAllLocations() {
+    public List<Location> selectAllLocations() {
         return locationDao.selectAllLocations();
     }
 
-    public Optional<Location> getLocationById(UUID id) {
+    public Optional<Location> selectLocationById(UUID id) {
         return locationDao.selectLocationById(id);
     }
 

@@ -23,15 +23,15 @@ public class StopService {
         this.stopDao = stopDao;
     }
 
-    public boolean addStop(Stop stop) {
+    public boolean insertStop(Stop stop) {
         return stopDao.insertStop(stop);
     }
 
-    public List<Stop> getAllStops() {
+    public List<Stop> selectAllStops() {
         return stopDao.selectAllStops();
     }
 
-    public Optional<Stop> getStopById(UUID id) {
+    public Optional<Stop> selectStopById(UUID id) {
         return stopDao.selectStopById(id);
     }
 

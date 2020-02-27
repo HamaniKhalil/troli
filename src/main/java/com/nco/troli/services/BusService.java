@@ -23,15 +23,15 @@ public class BusService {
         this.busDao = busDao;
     }
 
-    public boolean addBus(Bus bus) {
+    public boolean insertBus(Bus bus) {
         return busDao.insertBus(bus);
     }
 
-    public List<Bus> getAllBuses() {
+    public List<Bus> selectAllBuses() {
         return busDao.selectAllBuses();
     }
 
-    public Optional<Bus> getBusById(UUID id) {
+    public Optional<Bus> selectBusById(UUID id) {
         return busDao.selectBusById(id);
     }
 
