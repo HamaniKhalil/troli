@@ -1,0 +1,6 @@
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/troli_db
+    username: postgres
+    password: 2Yx9wm=RhM
+    poll-size: 30

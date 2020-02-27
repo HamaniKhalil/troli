@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.nco.troli.env.Constants.POSTGRES_QUALIFIER;
+import static com.nco.troli.env.Constants.LINE_PSQL_QUALIFIER;
 
 @Service
 public class LineService {
@@ -19,7 +19,7 @@ public class LineService {
 
     // Constructor
     @Autowired
-    public LineService(@Qualifier(POSTGRES_QUALIFIER) LineDao lineDao) {
+    public LineService(@Qualifier(LINE_PSQL_QUALIFIER) LineDao lineDao) {
         this.lineDao = lineDao;
     }
 

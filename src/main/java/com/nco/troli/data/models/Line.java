@@ -10,18 +10,23 @@ public class Line {
 
     private static final String ID_LABEL = "id";
     private static final String STOPS_LABEL = "stops";
+    private static final String COMPANY_LABEL = "company";
     
     private final UUID id;
     @NotBlank
     private final List<Stop> stops;
+    @NotBlank
+    private final Company company;
 
     // Constructor
     public Line(
             @JsonProperty(ID_LABEL) UUID id,
-            @JsonProperty(STOPS_LABEL) @NotBlank List<Stop> stops
+            @JsonProperty(STOPS_LABEL) @NotBlank List<Stop> stops,
+            @JsonProperty(COMPANY_LABEL) @NotBlank Company company
     ) {
         this.id = id;
         this.stops = stops;
+        this.company = company;
     }
 
     // Getters
@@ -31,5 +36,9 @@ public class Line {
 
     public List<Stop> getStops() {
         return stops;
+    }
+
+    public Company getCompany() {
+        return company;
     }
 }

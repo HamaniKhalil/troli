@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.nco.troli.env.Constants.POSTGRES_QUALIFIER;
+import static com.nco.troli.env.Constants.LOCATION_PSQL_QUALIFIER;
 
 @Service
 public class LocationService {
@@ -19,7 +19,7 @@ public class LocationService {
 
     // Constructor
     @Autowired
-    public LocationService(@Qualifier(POSTGRES_QUALIFIER) LocationDao locationDao) {
+    public LocationService(@Qualifier(LOCATION_PSQL_QUALIFIER) LocationDao locationDao) {
         this.locationDao = locationDao;
     }
 

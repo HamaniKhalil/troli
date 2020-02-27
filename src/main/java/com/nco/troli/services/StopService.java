@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.nco.troli.env.Constants.POSTGRES_QUALIFIER;
+import static com.nco.troli.env.Constants.STOP_PSQL_QUALIFIER;
 
 @Service
 public class StopService {
@@ -19,7 +19,7 @@ public class StopService {
 
     // Constructor
     @Autowired
-    public StopService(@Qualifier(POSTGRES_QUALIFIER) StopDao stopDao) {
+    public StopService(@Qualifier(STOP_PSQL_QUALIFIER) StopDao stopDao) {
         this.stopDao = stopDao;
     }
 

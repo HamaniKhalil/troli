@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.nco.troli.env.Constants.POSTGRES_QUALIFIER;
+import static com.nco.troli.env.Constants.PASSENGER_PSQL_QUALIFIER;
 
 @Service
 public class PassengerService {
@@ -19,7 +19,7 @@ public class PassengerService {
 
     // Constructor
     @Autowired
-    public PassengerService(@Qualifier(POSTGRES_QUALIFIER) PassengerDao passengerDao) {
+    public PassengerService(@Qualifier(PASSENGER_PSQL_QUALIFIER) PassengerDao passengerDao) {
         this.passengerDao = passengerDao;
     }
 
