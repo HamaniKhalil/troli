@@ -8,12 +8,7 @@ import java.util.UUID;
 
 public interface CompanyDao {
 
-    boolean insertCompany(UUID id, Company company);
-
-    default boolean insertCompany(Company company) {
-        UUID id = UUID.randomUUID();
-        return insertCompany(id, company);
-    }
+    boolean insertCompany(Company company);
 
     List<Company> selectAllCompanies();
 

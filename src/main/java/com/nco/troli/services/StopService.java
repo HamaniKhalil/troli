@@ -2,6 +2,8 @@ package com.nco.troli.services;
 
 import com.nco.troli.data.daos.StopDao;
 import com.nco.troli.data.models.Stop;
+import com.nco.troli.data.repositories.LocationRepository;
+import com.nco.troli.data.repositories.StopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -13,33 +15,51 @@ import java.util.UUID;
 import static com.nco.troli.env.Constants.STOP_PSQL_QUALIFIER;
 
 @Service
-public class StopService {
+public class StopService implements StopDao {
 
-    private final StopDao stopDao;
+    private final StopRepository stopRepository;
+    private final LocationRepository locationRepository;
 
     // Constructor
     @Autowired
-    public StopService(@Qualifier(STOP_PSQL_QUALIFIER) StopDao stopDao) {
-        this.stopDao = stopDao;
+    public StopService(
+            StopRepository stopRepository,
+            LocationRepository locationRepository
+    ) {
+        this.stopRepository = stopRepository;
+        this.locationRepository = locationRepository;
     }
 
-    public boolean insertStop(Stop stop) {
-        return stopDao.insertStop(stop);
+    @Override
+    public synchronized boolean insertStop(Stop stop) {
+        return stopRepository.save(stop) == null;
     }
 
+    @Override
     public List<Stop> selectAllStops() {
-        return stopDao.selectAllStops();
+        return stopRepository.findAll();
     }
 
+    @Override
     public Optional<Stop> selectStopById(UUID id) {
-        return stopDao.selectStopById(id);
+        return stopRepository.findById(id);
     }
 
+    @Override
     public boolean deleteStopById(UUID id) {
-        return stopDao.deleteStopById(id);
+        stopRepository.deleteById(id);
+        return true;
     }
 
+    @Override
     public boolean updateStopById(UUID id, Stop stop) {
-        return stopDao.updateStopById(id, stop);
+        if(stopRepository.findById(id).isPresent()) {
+            stop.setId(id);
+            stopRepository.save(stop);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

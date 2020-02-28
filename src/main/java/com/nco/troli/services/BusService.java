@@ -2,44 +2,55 @@ package com.nco.troli.services;
 
 import com.nco.troli.data.daos.BusDao;
 import com.nco.troli.data.models.Bus;
+import com.nco.troli.data.repositories.BusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.nco.troli.env.Constants.BUS_PSQL_QUALIFIER;
-
 @Service
-public class BusService {
+public class BusService implements BusDao {
 
-    private final BusDao busDao;
+    private final BusRepository busRepository;
 
     // Constructor
     @Autowired
-    public BusService(@Qualifier(BUS_PSQL_QUALIFIER) BusDao busDao) {
-        this.busDao = busDao;
+    public BusService(BusRepository busRepository) {
+        this.busRepository = busRepository;
     }
 
+    @Override
     public boolean insertBus(Bus bus) {
-        return busDao.insertBus(bus);
+        return busRepository.save(bus) == null;
     }
 
+    @Override
     public List<Bus> selectAllBuses() {
-        return busDao.selectAllBuses();
+        return busRepository.findAll();
     }
 
+    @Override
     public Optional<Bus> selectBusById(UUID id) {
-        return busDao.selectBusById(id);
+        return busRepository.findById(id);
     }
 
+    @Override
     public boolean deleteBusById(UUID id) {
-        return busDao.deleteBusById(id);
+        busRepository.deleteById(id);
+        return true;
     }
 
+    @Override
     public boolean updateBusById(UUID id, Bus bus) {
-        return busDao.updateBusById(id, bus);
+        if(busRepository.findById(id).isPresent()) {
+            bus.setId(id);
+            busRepository.save(bus);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

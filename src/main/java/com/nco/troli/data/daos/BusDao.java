@@ -8,12 +8,7 @@ import java.util.UUID;
 
 public interface BusDao {
 
-    boolean insertBus(UUID id, Bus bus);
-
-    default boolean insertBus(Bus bus) {
-        UUID id = UUID.randomUUID();
-        return insertBus(id, bus);
-    }
+    boolean insertBus(Bus bus);
 
     List<Bus> selectAllBuses();
 

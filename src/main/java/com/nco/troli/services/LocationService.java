@@ -44,9 +44,7 @@ public class LocationService implements LocationDao {
 
     @Override
     public boolean updateLocationById(UUID id, Location location) {
-        Optional<Location> find = locationRepository.findById(id);
-
-        if(find.isPresent()) {
+        if(locationRepository.findById(id).isPresent()) {
             location.setId(id);
             locationRepository.save(location);
 

@@ -2,17 +2,24 @@ package com.nco.troli.data.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
+@Entity
+@Table(name = "company")
 public class Company {
 
     private static final String ID_LABEL = "id";
     private static final String NAME_LABEL = "name";
 
-    private final UUID id;
-    @NotBlank
-    private final String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = ID_LABEL)
+    private UUID id;
+    @Column(name = NAME_LABEL)
+    @NotNull
+    private String name;
 
     // Constructors
     public Company(
@@ -30,5 +37,14 @@ public class Company {
 
     public String getName() {
         return name;
+    }
+
+    // Setters
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

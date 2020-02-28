@@ -2,6 +2,7 @@ package com.nco.troli.services;
 
 import com.nco.troli.data.daos.CompanyDao;
 import com.nco.troli.data.models.Company;
+import com.nco.troli.data.repositories.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -13,33 +14,46 @@ import java.util.UUID;
 import static com.nco.troli.env.Constants.COMPANY_PSQL_QUALIFIER;
 
 @Service
-public class CompanyService {
+public class CompanyService implements CompanyDao {
 
-    private final CompanyDao companyDao;
+    private final CompanyRepository companyRepository;
 
     // Constructor
     @Autowired
-    public CompanyService(@Qualifier(COMPANY_PSQL_QUALIFIER) CompanyDao companyDao) {
-        this.companyDao = companyDao;
+    public CompanyService(CompanyRepository companyRepository) {
+        this.companyRepository = companyRepository;
     }
 
+    @Override
     public boolean insertCompany(Company company) {
-        return companyDao.insertCompany(company);
+        return companyRepository.save(company) == null;
     }
 
+    @Override
     public List<Company> selectAllCompanies() {
-        return companyDao.selectAllCompanies();
+        return companyRepository.findAll();
     }
 
+    @Override
     public Optional<Company> selectCompanyById(UUID id) {
-        return companyDao.selectCompanyById(id);
+        return companyRepository.findById(id);
     }
 
+    @Override
     public boolean deleteCompanyById(UUID id) {
-        return companyDao.deleteCompanyById(id);
+        companyRepository.deleteById(id);
+        return true;
     }
 
+    @Override
     public boolean updateCompanyById(UUID id, Company company) {
-        return companyDao.updateCompanyById(id, company);
+        if(companyRepository.findById(id).isPresent()) {
+            company.setId(id);
+            companyRepository.save(company);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

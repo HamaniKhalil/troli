@@ -8,12 +8,7 @@ import java.util.UUID;
 
 public interface LineDao {
 
-    boolean insertLine(UUID id, Line Line);
-
-    default boolean insertLine(Line line) {
-        UUID id = UUID.randomUUID();
-        return insertLine(id, line);
-    }
+    boolean insertLine(Line Line);
 
     List<Line> selectAllLines();
 

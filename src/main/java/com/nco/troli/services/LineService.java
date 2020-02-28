@@ -2,44 +2,55 @@ package com.nco.troli.services;
 
 import com.nco.troli.data.daos.LineDao;
 import com.nco.troli.data.models.Line;
+import com.nco.troli.data.repositories.LineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.nco.troli.env.Constants.LINE_PSQL_QUALIFIER;
-
 @Service
-public class LineService {
+public class LineService implements LineDao {
 
-    private final LineDao lineDao;
+    private final LineRepository lineRepository;
 
     // Constructor
     @Autowired
-    public LineService(@Qualifier(LINE_PSQL_QUALIFIER) LineDao lineDao) {
-        this.lineDao = lineDao;
+    public LineService(LineRepository lineRepository) {
+        this.lineRepository = lineRepository;
     }
 
+    @Override
     public boolean insertLine(Line line) {
-        return lineDao.insertLine(line);
+        return lineRepository.save(line) == null;
     }
 
+    @Override
     public List<Line> selectAllLines() {
-        return lineDao.selectAllLines();
+        return lineRepository.findAll();
     }
 
+    @Override
     public Optional<Line> selectLineById(UUID id) {
-        return lineDao.selectLineById(id);
+        return lineRepository.findById(id);
     }
 
+    @Override
     public boolean deleteLineById(UUID id) {
-        return lineDao.deleteLineById(id);
+        lineRepository.deleteById(id);
+        return true;
     }
 
+    @Override
     public boolean updateLineById(UUID id, Line line) {
-        return lineDao.updateLineById(id, line);
+        if(lineRepository.findById(id).isPresent()) {
+            line.setId(id);
+            lineRepository.save(line);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

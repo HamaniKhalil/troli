@@ -8,12 +8,7 @@ import java.util.UUID;
 
 public interface StopDao {
 
-    boolean insertStop(UUID id, Stop stop);
-
-    default boolean insertStop(Stop stop) {
-        UUID id = UUID.randomUUID();
-        return insertStop(id, stop);
-    }
+    boolean insertStop(Stop stop);
 
     List<Stop> selectAllStops();
 

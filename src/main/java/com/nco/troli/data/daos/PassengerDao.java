@@ -8,12 +8,7 @@ import java.util.UUID;
 
 public interface PassengerDao {
 
-    boolean insertPassenger(UUID id, Passenger passenger);
-
-    default boolean insertPassenger(Passenger passenger) {
-        UUID id = UUID.randomUUID();
-        return insertPassenger(id, passenger);
-    }
+    boolean insertPassenger(Passenger passenger);
 
     List<Passenger> selectAllPassengers();
 
