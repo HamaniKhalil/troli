@@ -7,12 +7,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface LocationDao {
-    boolean insertLocation(UUID id, Location location);
 
-    default boolean insertPerson(Location location) {
-        UUID id = UUID.randomUUID();
-        return insertLocation(id, location);
-    }
+    boolean insertLocation(Location location);
 
     List<Location> selectAllLocations();
 
