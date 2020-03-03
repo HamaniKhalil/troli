@@ -56,4 +56,9 @@ public class CompanyController {
     public void deleteCompanyById(@PathVariable("id") UUID id) {
         companyService.deleteCompanyById(id);
     }
+
+    @DeleteMapping
+    public void deleteAllCompanies() {
+        companyService.deleteAllCompanies();
+    }
 }

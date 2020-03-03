@@ -43,6 +43,12 @@ public class PassengerService implements PassengerDao {
     }
 
     @Override
+    public boolean deleteAllPassengers() {
+        passengerRepository.deleteAll();
+        return true;
+    }
+
+    @Override
     public boolean updatePassengerById(UUID id, Passenger passenger) {
         if(passengerRepository.findById(id).isPresent()) {
             passenger.setId(id);

@@ -43,6 +43,12 @@ public class LineService implements LineDao {
     }
 
     @Override
+    public boolean deleteAllLines() {
+        lineRepository.deleteAll();
+        return true;
+    }
+
+    @Override
     public boolean updateLineById(UUID id, Line line) {
         if(lineRepository.findById(id).isPresent()) {
             line.setId(id);

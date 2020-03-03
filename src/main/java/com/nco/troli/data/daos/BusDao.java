@@ -14,6 +14,8 @@ public interface BusDao {
 
     boolean deleteBusById(UUID id);
 
+    boolean deleteAllBuses();
+
     boolean updateBusById(UUID id, Bus bus);
 
     Optional<Bus> selectBusById(UUID id);

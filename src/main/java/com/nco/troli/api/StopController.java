@@ -55,4 +55,9 @@ public class StopController {
     public void deleteStopById(@PathVariable("id") UUID id) {
         stopService.deleteStopById(id);
     }
+
+    @DeleteMapping
+    public void deleteAllStops() {
+        stopService.deleteAllStops();
+    }
 }

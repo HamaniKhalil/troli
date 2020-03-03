@@ -14,6 +14,8 @@ public interface LineDao {
 
     boolean deleteLineById(UUID id);
 
+    boolean deleteAllLines();
+
     boolean updateLineById(UUID id, Line line);
 
     Optional<Line> selectLineById(UUID id);

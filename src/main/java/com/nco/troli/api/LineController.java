@@ -55,4 +55,9 @@ public class LineController {
     public void deleteLineById(@PathVariable("id") UUID id) {
         lineService.deleteLineById(id);
     }
+
+    @DeleteMapping
+    public void deleteAllLines() {
+        lineService.deleteAllLines();
+    }
 }

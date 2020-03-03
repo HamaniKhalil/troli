@@ -43,6 +43,12 @@ public class BusService implements BusDao {
     }
 
     @Override
+    public boolean deleteAllBuses() {
+        busRepository.deleteAll();
+        return true;
+    }
+
+    @Override
     public boolean updateBusById(UUID id, Bus bus) {
         if(busRepository.findById(id).isPresent()) {
             bus.setId(id);

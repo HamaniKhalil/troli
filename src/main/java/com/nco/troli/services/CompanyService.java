@@ -4,14 +4,11 @@ import com.nco.troli.data.daos.CompanyDao;
 import com.nco.troli.data.models.Company;
 import com.nco.troli.data.repositories.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import static com.nco.troli.env.Constants.COMPANY_PSQL_QUALIFIER;
 
 @Service
 public class CompanyService implements CompanyDao {
@@ -42,6 +39,12 @@ public class CompanyService implements CompanyDao {
     @Override
     public boolean deleteCompanyById(UUID id) {
         companyRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public boolean deleteAllCompanies() {
+        companyRepository.deleteAll();
         return true;
     }
 

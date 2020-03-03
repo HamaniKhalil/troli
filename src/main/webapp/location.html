@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location form</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <form id="myForm" enctype='application/json'>
+        <input type="hidden" id="longitude" name="longitude" value="36.13213"/>
+        <input type="hidden" id="latitude" name="latitude" value="2.147198"/>
+    </form>
+    <button id="myFormSubmit">Ok</button>
+
+    <script>
+        $("#myFormSubmit").click(function() {
+
+            var location = {
+                longitude: parseFloat($("#longitude").val()),
+                latitude: parseFloat($("#latitude").val())
+            };
+
+            $.ajax({
+                url: 'http://localhost:8080/api/v1/location',
+                type: 'post',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(location),
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(data) {
+                    console.log(data);
+                },
+                processData: false
+            });
+        });
+    </script>
+</body>
+</html>

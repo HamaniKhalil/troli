@@ -55,4 +55,9 @@ public class PassengerController {
     public void deletePassengerById(@PathVariable("id") UUID id) {
         passengerService.deletePassengerById(id);
     }
+
+    @DeleteMapping
+    public void deleteAllPassengers() {
+        passengerService.deleteAllPassengers();
+    }
 }

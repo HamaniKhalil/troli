@@ -5,14 +5,11 @@ import com.nco.troli.data.models.Stop;
 import com.nco.troli.data.repositories.LocationRepository;
 import com.nco.troli.data.repositories.StopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import static com.nco.troli.env.Constants.STOP_PSQL_QUALIFIER;
 
 @Service
 public class StopService implements StopDao {
@@ -48,6 +45,12 @@ public class StopService implements StopDao {
     @Override
     public boolean deleteStopById(UUID id) {
         stopRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public boolean deleteAllStops() {
+        stopRepository.deleteAll();
         return true;
     }
 

@@ -14,6 +14,8 @@ public interface CompanyDao {
 
     boolean deleteCompanyById(UUID id);
 
+    boolean deleteAllCompanies();
+
     boolean updateCompanyById(UUID id, Company company);
 
     Optional<Company> selectCompanyById(UUID id);

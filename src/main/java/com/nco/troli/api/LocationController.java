@@ -55,4 +55,9 @@ public class LocationController {
     public void deleteLocationById(@PathVariable("id") UUID id) {
         locationService.deleteLocationById(id);
     }
+
+    @DeleteMapping
+    public void deleteAllLocations() {
+        locationService.deleteAllLocations();
+    }
 }

@@ -43,6 +43,12 @@ public class LocationService implements LocationDao {
     }
 
     @Override
+    public boolean deleteAllLocations() {
+        locationRepository.deleteAll();
+        return true;
+    }
+
+    @Override
     public boolean updateLocationById(UUID id, Location location) {
         if(locationRepository.findById(id).isPresent()) {
             location.setId(id);

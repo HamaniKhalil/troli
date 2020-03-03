@@ -14,6 +14,8 @@ public interface LocationDao {
 
     boolean deleteLocationById(UUID id);
 
+    boolean deleteAllLocations();
+
     boolean updateLocationById(UUID id, Location location);
 
     Optional<Location> selectLocationById(UUID id);

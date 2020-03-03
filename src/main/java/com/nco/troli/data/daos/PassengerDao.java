@@ -14,6 +14,8 @@ public interface PassengerDao {
 
     boolean deletePassengerById(UUID id);
 
+    boolean deleteAllPassengers();
+
     boolean updatePassengerById(UUID id, Passenger passenger);
 
     Optional<Passenger> selectPassengerById(UUID id);

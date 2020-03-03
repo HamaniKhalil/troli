@@ -55,4 +55,9 @@ public class BusController {
     public void deleteBusById(@PathVariable("id") UUID id) {
         busService.deleteBusById(id);
     }
+
+    @DeleteMapping
+    public void deleteAllBuses() {
+        busService.deleteAllBuses();
+    }
 }

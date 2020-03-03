@@ -14,6 +14,8 @@ public interface StopDao {
 
     boolean deleteStopById(UUID id);
 
+    boolean deleteAllStops();
+
     boolean updateStopById(UUID id, Stop stop);
 
     Optional<Stop> selectStopById(UUID id);
