@@ -1,7 +1,6 @@
 package com.nco.troli.api;
 
 import com.nco.troli.data.models.Company;
-import com.nco.troli.data.models.Stop;
 import com.nco.troli.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

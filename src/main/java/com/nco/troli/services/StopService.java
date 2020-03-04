@@ -2,7 +2,6 @@ package com.nco.troli.services;
 
 import com.nco.troli.data.daos.StopDao;
 import com.nco.troli.data.models.Stop;
-import com.nco.troli.data.repositories.LocationRepository;
 import com.nco.troli.data.repositories.StopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,16 +14,11 @@ import java.util.UUID;
 public class StopService implements StopDao {
 
     private final StopRepository stopRepository;
-    private final LocationRepository locationRepository;
 
     // Constructor
     @Autowired
-    public StopService(
-            StopRepository stopRepository,
-            LocationRepository locationRepository
-    ) {
+    public StopService(StopRepository stopRepository) {
         this.stopRepository = stopRepository;
-        this.locationRepository = locationRepository;
     }
 
     @Override

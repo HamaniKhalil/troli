@@ -11,32 +11,36 @@ import java.util.UUID;
 @Table(name = "line")
 public class Line {
 
+    // JSON Label names
     private static final String ID_LABEL = "id";
     private static final String STOPS_LABEL = "stops";
     private static final String COMPANY_LABEL = "company";
 
-    //
+    // DB column names
+    private static final String LINE_STOP_TABLE_NAME = "line_stop";
     private static final String COMPANY_COLUMN = "company_id";
+    private static final String LINE_ID_COLUMN = "line_id";
+    private static final String STOP_ID_COLUMN = "stop_id";
+    private static final String STOP_ORDER_COLUMN = "stop_order";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = ID_LABEL)
     private UUID id;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @OrderColumn(name = STOP_ORDER_COLUMN)
     @JoinTable(
-            name = "line_stop",
+            name = LINE_STOP_TABLE_NAME,
             joinColumns = {
-                    @JoinColumn(name = "line_id", nullable = false, updatable = false)
+                    @JoinColumn(name = LINE_ID_COLUMN, nullable = false, updatable = false)
             },
             inverseJoinColumns = {
-                    @JoinColumn(name = "stop_id", nullable = false, updatable = false)
+                    @JoinColumn(name = STOP_ID_COLUMN, nullable = false, updatable = false)
             }
-
     )
     private List<Stop> stops;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = COMPANY_COLUMN)
-    @NotNull
     private Company company;
 
     // Constructor
@@ -45,7 +49,7 @@ public class Line {
     public Line(
             @JsonProperty(ID_LABEL) UUID id,
             @JsonProperty(STOPS_LABEL) @NotNull List<Stop> stops,
-            @JsonProperty(COMPANY_LABEL) @NotNull Company company
+            @JsonProperty(COMPANY_LABEL) Company company
     ) {
         this.id = id;
         this.stops = stops;

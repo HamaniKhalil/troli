@@ -17,8 +17,8 @@ CREATE TABLE passenger(
 CREATE TABLE stop(
     id UUID NOT NULL PRIMARY KEY,
     name VARCHAR(255),
-    forward_location UUID REFERENCES location(id) ON DELETE SET NULL,
-    backward_location UUID REFERENCES location(id) ON DELETE SET NULL
+    forward_id UUID REFERENCES location(id) ON DELETE SET NULL,
+    backward_id UUID REFERENCES location(id) ON DELETE SET NULL
 );
 
 -- Company --
@@ -37,7 +37,8 @@ CREATE TABLE line(
 CREATE TABLE bus(
     id UUID NOT NULL PRIMARY KEY,
     is_forward BOOLEAN NOT NULL,
-    location_id UUID NOT NULL REFERENCES location(id) ON DELETE CASCADE
+    location_id UUID NOT NULL REFERENCES location(id) ON DELETE CASCADE,
+    line_id UUID NOT NULL REFERENCES line(id) ON DELETE CASCADE
 );
 
 -- RELATIONSHIPS --

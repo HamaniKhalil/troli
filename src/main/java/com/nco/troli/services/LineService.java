@@ -1,7 +1,9 @@
 package com.nco.troli.services;
 
 import com.nco.troli.data.daos.LineDao;
+import com.nco.troli.data.models.Company;
 import com.nco.troli.data.models.Line;
+import com.nco.troli.data.repositories.CompanyRepository;
 import com.nco.troli.data.repositories.LineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +16,16 @@ import java.util.UUID;
 public class LineService implements LineDao {
 
     private final LineRepository lineRepository;
+    private final CompanyRepository companyRepository;
 
     // Constructor
     @Autowired
-    public LineService(LineRepository lineRepository) {
+    public LineService(
+            LineRepository lineRepository,
+            CompanyRepository companyRepository
+    ) {
         this.lineRepository = lineRepository;
+        this.companyRepository = companyRepository;
     }
 
     @Override
@@ -50,9 +57,24 @@ public class LineService implements LineDao {
 
     @Override
     public boolean updateLineById(UUID id, Line line) {
-        if(lineRepository.findById(id).isPresent()) {
-            line.setId(id);
-            lineRepository.save(line);
+        Optional<Line> found = lineRepository.findById(id);
+
+        if(found.isPresent()) {
+            Line old = found.get();
+            // Copy company
+            Company company;
+            if((company = line.getCompany()) != null) {
+                if(company.getId() != null) {
+                    company = companyRepository.findById(company.getId()).get();
+                }
+                old.setCompany(company);
+            }
+            // Copy stops
+            if(line.getStops() != null && !line.getStops().isEmpty()) {
+                old.setStops(line.getStops());
+            }
+            // Update
+            lineRepository.save(old);
             return true;
         }
         else {

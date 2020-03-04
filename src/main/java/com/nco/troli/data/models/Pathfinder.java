@@ -17,7 +17,7 @@ abstract public class Pathfinder {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = ID_LABEL)
     protected UUID id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = LOCATION_COLUMN)
     @NotNull
     protected Location location;

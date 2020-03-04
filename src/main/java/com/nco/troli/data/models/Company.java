@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +23,8 @@ public class Company {
     private String name;
 
     // Constructors
+    public Company() {}
+
     public Company(
             @JsonProperty(ID_LABEL) UUID id,
             @JsonProperty(NAME_LABEL) String name
