@@ -3,8 +3,10 @@ package com.nco.troli.services;
 import com.nco.troli.data.daos.LineDao;
 import com.nco.troli.data.models.Company;
 import com.nco.troli.data.models.Line;
+import com.nco.troli.data.models.Stop;
 import com.nco.troli.data.repositories.CompanyRepository;
 import com.nco.troli.data.repositories.LineRepository;
+import com.nco.troli.data.repositories.StopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,15 +19,18 @@ public class LineService implements LineDao {
 
     private final LineRepository lineRepository;
     private final CompanyRepository companyRepository;
+    private final StopRepository stopRepository;
 
     // Constructor
     @Autowired
     public LineService(
             LineRepository lineRepository,
-            CompanyRepository companyRepository
+            CompanyRepository companyRepository,
+            StopRepository stopRepository
     ) {
         this.lineRepository = lineRepository;
         this.companyRepository = companyRepository;
+        this.stopRepository = stopRepository;
     }
 
     @Override
@@ -71,6 +76,12 @@ public class LineService implements LineDao {
             }
             // Copy stops
             if(line.getStops() != null && !line.getStops().isEmpty()) {
+                for(int i = 0; i < line.getStops().size(); i ++) {
+                    if(line.getStops().get(i).getId() == null) {
+                        Stop storredStop = stopRepository.save(line.getStops().get(i));
+                        line.getStops().set(i, storredStop);
+                    }
+                }
                 old.setStops(line.getStops());
             }
             // Update
